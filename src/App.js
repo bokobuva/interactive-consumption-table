@@ -32,7 +32,50 @@ function App() {
     addProductNameInputRef.current.value = '';
   }
 
-  useEffect(() => { console.log(players) }, [players])
+  const addTakenProduct = (playerId, productId) => {
+    const modifiedPlayers = players.map((player)=> {
+      if (player.id === playerId) {
+        console.log(player.productsTaken);
+        return {
+          ...player,
+          productsTaken: player.productsTaken.length > 0 && player.productsTaken.find(productTaken => productTaken.productId === productId) ? 
+          player.productsTaken.map((takenProduct)=> {
+            console.log(productId, takenProduct.productId);
+            return (
+            takenProduct.productId === productId ? {...takenProduct, quantity: takenProduct.quantity + 1} : {...takenProduct}
+          )}) : 
+          [...player.productsTaken, {productId, quantity: 1}]
+        }
+      } else {
+        return {
+          ...player
+        }
+      }
+    });
+    setPlayers(modifiedPlayers);
+  }
+
+  useEffect(() => {
+    players?.length > 0 && localStorage.setItem('players', JSON.stringify(players));
+  }, [players]);
+  
+  useEffect(() => {
+    products?.length > 0 && localStorage.setItem('products', JSON.stringify(products));
+  }, [products]);
+
+  useEffect(()=>{
+
+    if (localStorage.getItem('products') !== null && localStorage.getItem('products') !== '') {
+      const productsFromLocalStorage = JSON.parse(localStorage.getItem('products'));
+      setProducts(productsFromLocalStorage);
+    }
+
+    if (localStorage.getItem('players') !== null && localStorage.getItem('players') !== '') {
+      const playersFromLocalStorage = JSON.parse(localStorage.getItem('players'));
+      setPlayers(playersFromLocalStorage);
+    }
+  }, []);
+
   return (
     <div className="App">
       <input ref={newPlayerNameInputRef} type='text' />
@@ -45,7 +88,7 @@ function App() {
 
             <th></th>
             {products?.length > 0 && products.map((product) => (
-              <th>{product.name}</th>
+              <th key={product.id}>{product.name}</th>
             ))}
           </tr>
         </thead>
@@ -53,11 +96,13 @@ function App() {
           {players?.length > 0 && players.map((player) => (
             <tr key={player.id}>
               <td>{player.name}</td>
-              {products.length > 0 && products.map((product) => (
-                player.productsTaken.length > 0 ? player.productsTaken.map((takenProduct) => (
-                  takenProduct.id === product.id && <td>{takenProduct.quantity}</td>
-                )) : <td></td>
-              ))}
+              {products.length > 0 && products.map((product) => {
+                const takenProduct = player.productsTaken.find((takenProduct) => takenProduct.productId === product.id);
+                return (
+                player.productsTaken.length > 0 && takenProduct
+                ? <td key={product.id+player.id} onClick={()=> addTakenProduct(player.id, product.id)}>{takenProduct.quantity}</td>
+                : <td key={product.id+player.id} onClick={()=> addTakenProduct(player.id, product.id)}></td>
+              )})}
             </tr>
           ))}
         </tbody>
