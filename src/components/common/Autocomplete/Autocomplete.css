@@ -1,0 +1,35 @@
+.player{
+    z-index: 99;
+}
+
+.suggestions {
+    width: 100%;
+    max-height: 90px;
+    background-color: var(--theme-bg-gray);
+    position: absolute;
+    top: 60px;
+    padding-left: 5px;
+    border: 1px solid var(--theme-yellow);
+    border-radius: 4px;
+    z-index: 19;
+    background-color: var(--theme-bg-black);
+}
+
+li {
+    padding: 8px 0;
+}
+
+.autocomplete-input{
+    width: 49%;
+}
+
+.autocomplete-button{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 49%;
+    height: 65%;
+    border-radius: 4px;
+    border: 1px solid var(--theme-yellow);
+}
+

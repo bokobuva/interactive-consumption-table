@@ -1,0 +1,7 @@
+th,
+td {
+  min-width: 35px;
+  height: 35px;
+  background-color: gray;
+  border: 1px solid black;
+}

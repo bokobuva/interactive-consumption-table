@@ -1,0 +1,11 @@
+button, a{
+    width: 100%;
+    background-color: var(--theme-yellow);
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--theme-bg-black);
+    font-size: 18px;
+    border: none;
+}

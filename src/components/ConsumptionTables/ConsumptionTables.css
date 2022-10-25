@@ -1,0 +1,66 @@
+.consumption-tables-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 10vh 15vw;
+}
+.tables-and-new-table-container{
+    width: 70vw;
+    height: 55vh;
+    overflow-y: scroll;
+}
+
+.tables-and-new-table-container > div {
+    width: 70vw;
+    height: max-content;
+}
+
+.tables-and-new-table-container > div > ul {
+    width: 70vw;
+    padding-left: 0px;
+    margin: 4px 0;
+}
+
+.tables-and-new-table-container > div > ul > li {
+    width: 70vw;
+    padding: 6px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tables-and-new-table-container > div > h5 {
+    margin: 5px 0;
+}
+
+.delete-button{
+    width: 15px;
+    height: 10px;
+    display: inline-block;
+    position: relative;
+}
+
+.delete-button > span {
+    width: 15px;
+    height: 1px;
+    background-color: var(--theme-text-gray);
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.delete-button > span:nth-child(1) {
+    rotate: 45deg;
+}
+
+.delete-button > span:nth-child(2) {
+    rotate: -45deg;
+}
+
+.new-table-form{
+    width: 100%;
+    position: relative;
+}
