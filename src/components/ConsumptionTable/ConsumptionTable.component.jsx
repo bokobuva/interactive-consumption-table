@@ -1,6 +1,7 @@
 import React, { useRef, Fragment, useContext, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { GlobalContext } from '../../context/GlobalContext';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import { addTakenProduct, handleAddPlayer, handleAddProduct, handleClickOnTakenProduct } from '../../utils/consumptionTableUtils';
 import './ConsumptionTable.css';
 
@@ -9,6 +10,7 @@ const ConsumptionTable = () => {
     const {consumptionTableId} = useParams();
     const newPlayerNameInputRef = useRef(null);
     const addProductNameInputRef = useRef(null);
+    const isTouchScreen = useMediaQuery('(min-width: 768px)');
     const currentTable = consumptionTablesState.find(table => consumptionTableId === table.id);
 
     useEffect(()=> {
@@ -45,10 +47,10 @@ const ConsumptionTable = () => {
                   player.productsTaken.length > 0 && takenProduct
                   ? <td
                       key={product.id+player.id}
-                      // onTouchStart={()=> consumptionTablesDispatch({ type: 'timeOnClick', payload: { tableId: currentTable.id, timeOnClick: new Date().getTime() }})}
-                      onMouseDown={()=> consumptionTablesDispatch({ type: 'timeOnClick', payload: { tableId: currentTable.id, timeOnClick: new Date().getTime() } })}
-                      // onTouchEnd={()=> handleClickOnTakenProduct(currentTable.id, currentTable?.players, player.id, product.id, new Date().getTime(), consumptionTablesDispatch)}
-                      onMouseUp={()=> handleClickOnTakenProduct(currentTable.id, currentTable?.players, player.id, product.id, new Date().getTime(), consumptionTablesDispatch)}
+                      onTouchStart={()=> !isTouchScreen && consumptionTablesDispatch({ type: 'timeOnClick', payload: { tableId: currentTable.id, timeOnClick: new Date().getTime() }})}
+                      onMouseDown={()=> isTouchScreen && consumptionTablesDispatch({ type: 'timeOnClick', payload: { tableId: currentTable.id, timeOnClick: new Date().getTime() } })}
+                      onTouchEnd={()=> !isTouchScreen && [console.log('touch end'), handleClickOnTakenProduct(currentTable.id, currentTable?.players, player.id, product.id, currentTable.timeOnClick.timeOnClick, new Date().getTime(), consumptionTablesDispatch)]}
+                      onMouseUp={()=> isTouchScreen && [console.log('mouse up'), handleClickOnTakenProduct(currentTable.id, currentTable?.players, player.id, product.id, currentTable.timeOnClick.timeOnClick, new Date().getTime(), consumptionTablesDispatch)]}
                     >
                       {takenProduct.quantity}
                     </td>

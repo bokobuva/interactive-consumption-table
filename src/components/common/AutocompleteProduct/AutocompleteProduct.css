@@ -1,0 +1,8 @@
+.autocomplete-product-container{
+    display: flex;
+}
+
+.autocomplete-product-container > div, .autocomplete-product-container > button {
+    width: 32%;
+}
+

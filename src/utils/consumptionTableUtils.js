@@ -59,40 +59,42 @@ export const addTakenProduct = (tableId, playersData, playerId, productId, dispa
   dispatch({ type: 'players', payload: modifiedPlayers });
 };
 
-export const removeTakenProduct = (playersData, playerId, productId, dispatch) => {
+export const removeTakenProduct = (tableId, playersData, playerId, productId, dispatch) => {
   let emptyTakenProductIndexes = [];
-  const modifiedPlayers = playersData.map((player, playerIndex) => {
-    if (player.id === playerId) {
+  const modifiedPlayers = {
+    tableId,
+    players: playersData.map((player, playerIndex) => {
+      if (player.id === playerId) {
 
-      return {
-        ...player,
-        productsTaken: player.productsTaken.map((takenProduct, takenProductIndex) => {
-          if (takenProduct.quantity === 1) {
-            emptyTakenProductIndexes.push({ playerIndex, takenProductIndex });
-          }
-          return (
-            takenProduct.productId === productId ? { ...takenProduct, quantity: takenProduct.quantity - 1 } : { ...takenProduct }
-          )
-        })
-      }
-    } else {
+        return {
+          ...player,
+          productsTaken: player.productsTaken.map((takenProduct, takenProductIndex) => {
+            if (takenProduct.quantity === 1) {
+              emptyTakenProductIndexes.push({ playerIndex, takenProductIndex });
+            }
+            return (
+              takenProduct.productId === productId ? { ...takenProduct, quantity: takenProduct.quantity - 1 } : { ...takenProduct }
+            )
+          })
+        }
+      } else {
 
-      return {
-        ...player,
+        return {
+          ...player,
+        }
       }
-    }
-  });
+    }),
+  }
   emptyTakenProductIndexes.forEach((emptyProduct) => modifiedPlayers[emptyProduct.playerIndex]?.productsTaken?.splice(emptyProduct.takenProductIndex, 1));
   dispatch({ type: 'players', payload: modifiedPlayers });
 };
 
-export const handleClickOnTakenProduct = (tableId, playersData, playerId, productId, timeOnClick, dispatch) => {
-  const timeOnReleaseClick = new Date().getTime();
+export const handleClickOnTakenProduct = (tableId, playersData, playerId, productId, timeOnClick, timeOnReleaseClick, dispatch) => {
 
   if (timeOnReleaseClick - timeOnClick > 350) {
-    removeTakenProduct(playersData, playerId, productId, dispatch);
+    removeTakenProduct(tableId, playersData, playerId, productId, dispatch);
   } else {
     addTakenProduct(tableId, playersData, playerId, productId, dispatch);
   }
-  dispatch({ type: 'timeOnClick', payload: { tableId, timeOnClick: null} });
+  dispatch({ type: 'timeOnClick', payload: { tableId, timeOnClick: null } });
 };

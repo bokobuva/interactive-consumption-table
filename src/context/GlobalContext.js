@@ -13,8 +13,7 @@ export const GlobalContextProvider = (props) => {
 
         
     useEffect(() => {
-        const consumptionTablesFromLocalStorage = JSON.parse(localStorage.getItem('consumptionTables'));
-        consumptionTablesState?.length > 0 && consumptionTablesFromLocalStorage?.length !== consumptionTablesState.length && localStorage.setItem('consumptionTables', JSON.stringify(consumptionTablesState));
+        consumptionTablesState?.length > 0 && localStorage.setItem('consumptionTables', JSON.stringify(consumptionTablesState));
     }, [consumptionTablesState]);
 
     useEffect(()=>{

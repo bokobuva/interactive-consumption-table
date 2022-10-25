@@ -1,16 +1,16 @@
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import newGUID from '../../../utils/newGUID';
 import './InputField.css';
 
-const InputField = ({type, label, placeholder, onChange}) => {
+const InputField = forwardRef(({type, label, placeholder, onChange, onKeyDown}, ref) => {
     const [inputId, setInputId] = useState();
-    useEffect(()=> setInputId(newGUID()), []);
+    useEffect(()=> setInputId(newGUID('input')), []);
     return ( 
         <div>
             <label htmlFor={inputId}>{label}</label>
-            <input id={inputId} type={type} placeholder={placeholder} onChange={(e)=> onChange(e.target.value)}/>
+            <input id={inputId} ref={ref} type={type} placeholder={placeholder} onChange={()=> onChange && onChange()} onKeyDown={onKeyDown}/>
         </div>
      );
-};
+});
  
 export default InputField;

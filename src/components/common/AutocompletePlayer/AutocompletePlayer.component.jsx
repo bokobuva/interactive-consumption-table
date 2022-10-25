@@ -1,22 +1,22 @@
-import { useEffect, useRef, useState } from "react";
-import newGUID from "../../../utils/newGUID";
-import './Autocomplete.css';
+import { useRef, useState } from "react";
+import { PLAYERS_SUGGESTIONS } from "../../../consts/suggestions";
+import InputField from "../InputField/InputField.component";
+import './AutocompletePlayer.css';
 
-const Autocomplete = ({suggestions, label, type, placeholder, onChange, className}) => {
-    
-    const [autocompleteId, setAutoCompleteId] = useState();
+const AutocompletePlayer = ({ label, type, placeholder, onChange, className}) => {
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestion, setActiveSuggestion] = useState(0);
     const [showSuggestions, setShowSuggestion] = useState(false);
-    // const [userInput, setUserInput] = useState('');
     const userInputRef = useRef();
     
     const handleAutocompleteChange = (e) => {
         
-        const filteredSuggestions = suggestions.filter((suggestion)=> suggestion.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1);
+        const filteredSuggestions = PLAYERS_SUGGESTIONS.filter((suggestion)=> suggestion.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1 && suggestion.name);
+        const mappedFilteredSuggestions = filteredSuggestions.map((suggestion)=> suggestion.name)
+        console.log(mappedFilteredSuggestions)
         userInputRef.current.value = e.target.value;
         setShowSuggestion(true);
-        setFilteredSuggestions(filteredSuggestions);
+        setFilteredSuggestions(mappedFilteredSuggestions);
     }
 
     const handleOptionClick = (e) => {
@@ -42,28 +42,20 @@ const Autocomplete = ({suggestions, label, type, placeholder, onChange, classNam
             setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion + 1);
         }
     };
-
-    useEffect(()=> {setAutoCompleteId(newGUID('autocomplete'))}, []);
     
     return (
         <div className={`${className ? className : ''} autocomplete-container`}>
-            <label
-                htmlFor={autocompleteId}
-                className='autocomplete-label'
-            >
-                {label}
-            </label>
-            <input
-                id={autocompleteId}
-                type={type}
-                placeholder={placeholder}
+            <InputField
+                type='text'
+                placeholder='Add player'
+                label='Add player'
                 ref={userInputRef}
                 onKeyDown={(e)=> handleKeyDown(e)}
                 onChange={(e)=> handleAutocompleteChange(e)}
                 className='autocomplete-input'
             />
             {
-                showSuggestions && userInputRef.current.value !== '' && filteredSuggestions.length &&
+                showSuggestions && userInputRef.current.value !== '' && filteredSuggestions.length ?
                 <ul className="suggestions">
                     {filteredSuggestions.map((suggestion, index) => {
                         let className;
@@ -78,7 +70,7 @@ const Autocomplete = ({suggestions, label, type, placeholder, onChange, classNam
                             </li>
                         );
                     })}
-                </ul>
+                </ul> : ''
             }
             <button
                 onClick={(e)=> [e.preventDefault(),onChange(userInputRef.current.value), userInputRef.current.value = '']}
@@ -90,4 +82,4 @@ const Autocomplete = ({suggestions, label, type, placeholder, onChange, classNam
     );
 }
  
-export default Autocomplete;
+export default AutocompletePlayer;

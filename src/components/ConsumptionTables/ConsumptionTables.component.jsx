@@ -5,10 +5,11 @@ import PRODUCT from "../../consts/productConst";
 import { GlobalContext } from "../../context/GlobalContext";
 import { createAppRoute } from "../../utils/createAppRoute";
 import newGUID from "../../utils/newGUID";
-import Autocomplete from "../common/Autocomplete/Autocomplete.component";
 import InputField from "../common/InputField/InputField.component";
 import Button from '../common/Button/Button.component';
 import './ConsumptionTables.css';
+import AutocompletePlayer from "../common/AutocompletePlayer/AutocompletePlayer.component";
+import AutocompleteProduct from "../common/AutocompleteProduct/AutocompleteProduct.component";
 
 const ConsumptionTables = () => {
     const {consumptionTablesState, consumptionTablesDispatch, newConsumptionTableState, newConsumptionTableDispatch} = useContext(GlobalContext);
@@ -50,8 +51,8 @@ const ConsumptionTables = () => {
         }
     }
     
-    const addNewProduct = (productName) => {
-        const newProduct = {...PRODUCT, name: productName, id: newGUID('product')};
+    const addNewProduct = (productName, productPrice) => {
+        const newProduct = {...PRODUCT, name: productName, price: parseFloat(productPrice), id: newGUID('product')};
         newConsumptionTableDispatch({ type: 'products', payload: [...newConsumptionTableState.products, newProduct] });
     }
     
@@ -103,8 +104,8 @@ const ConsumptionTables = () => {
             </section>
             <form className='new-table-form'>
                 <InputField label='Table Name' type='text' onChange={handleNameChange}/>
-                <Autocomplete suggestions={['birde', 'brane', 'kjanzo']} onChange={addNewPlayer} label='Add Player' className={'player'}/>
-                <Autocomplete suggestions={['coca cola', 'voda', 'cips']} onChange={addNewProduct} label='Add Product'/>
+                <AutocompletePlayer onChange={addNewPlayer} className={'player'}/>
+                <AutocompleteProduct addProduct={addNewProduct} className={'product'}/>
                 <Button text={'Create New Table'} variation='link' onClick={()=> createNewConsumptionTable()} to={createAppRoute('consumptionTable', {CONSUMPTION_TABLE_ID: newConsumptionTableState.id})}/>
             </form>
         </main>
