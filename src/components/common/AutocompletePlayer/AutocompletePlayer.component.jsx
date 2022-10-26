@@ -3,18 +3,16 @@ import { PLAYERS_SUGGESTIONS } from "../../../consts/suggestions";
 import InputField from "../InputField/InputField.component";
 import './AutocompletePlayer.css';
 
-const AutocompletePlayer = ({ label, type, placeholder, onChange, className}) => {
+const AutocompletePlayer = ({ onChange, className}) => {
     const [filteredSuggestions, setFilteredSuggestions] = useState([]);
     const [activeSuggestion, setActiveSuggestion] = useState(0);
     const [showSuggestions, setShowSuggestion] = useState(false);
     const userInputRef = useRef();
     
-    const handleAutocompleteChange = (e) => {
+    const handleAutocompleteChange = () => {
         
-        const filteredSuggestions = PLAYERS_SUGGESTIONS.filter((suggestion)=> suggestion.name.toLowerCase().indexOf(e.target.value.toLowerCase()) > -1 && suggestion.name);
-        const mappedFilteredSuggestions = filteredSuggestions.map((suggestion)=> suggestion.name)
-        console.log(mappedFilteredSuggestions)
-        userInputRef.current.value = e.target.value;
+        const filteredSuggestions = PLAYERS_SUGGESTIONS.filter((suggestion)=> suggestion.name.toLowerCase().indexOf(userInputRef.current.value.toLowerCase()) > -1 && suggestion.name);
+        const mappedFilteredSuggestions = filteredSuggestions.map((suggestion)=> suggestion.name);
         setShowSuggestion(true);
         setFilteredSuggestions(mappedFilteredSuggestions);
     }
@@ -50,8 +48,8 @@ const AutocompletePlayer = ({ label, type, placeholder, onChange, className}) =>
                 placeholder='Add player'
                 label='Add player'
                 ref={userInputRef}
-                onKeyDown={(e)=> handleKeyDown(e)}
-                onChange={(e)=> handleAutocompleteChange(e)}
+                onKeyDown={handleKeyDown}
+                onChange={handleAutocompleteChange}
                 className='autocomplete-input'
             />
             {

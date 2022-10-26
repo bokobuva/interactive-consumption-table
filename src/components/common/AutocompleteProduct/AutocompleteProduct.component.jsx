@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { PRODUCTS_SUGGESTIONS } from "../../../consts/suggestions";
 import InputField from "../InputField/InputField.component";
 import './AutocompleteProduct.css';
@@ -40,8 +40,6 @@ const AutocompleteProduct = ({ addProduct, className}) => {
         }
     };
     
-
-    useEffect(()=> productNameRef.current && console.log(productNameRef.current.value), [productNameRef])
     return (
         <div className={`${className ? className : ''} autocomplete-product-container`}>
             <InputField
