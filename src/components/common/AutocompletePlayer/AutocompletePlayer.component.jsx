@@ -18,8 +18,8 @@ const AutocompletePlayer = ({ onChange, className}) => {
     }
 
     const handleOptionClick = (e) => {
+        onChange(userInputRef.current.value);
         userInputRef.current.value = '';
-        onChange(e.currentTarget.innerText);
     }
     
     const handleKeyDown = (e) => {
@@ -29,6 +29,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
                 userInputRef.current.value = filteredSuggestions[activeSuggestion];
                 setShowSuggestion(false);
                 setActiveSuggestion(0);
+                handleOptionClick(e);
             } else if (e.keyCode === 38) {
                 if (activeSuggestion === 0) return;
                 

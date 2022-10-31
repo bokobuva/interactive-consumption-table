@@ -100,7 +100,7 @@ const CreateNewTable = () => {
                     text={'Create New Table'}
                     disabled={newConsumptionTableState.name === ''}
                     variation='link'
-                    onClick={() => [createNewConsumptionTable(), setActiveIndex(2), localStorage.setItem('activeIndex', 2)]}
+                    onClick={() => [createNewConsumptionTable(), setActiveIndex(3), localStorage.setItem('activeIndex', 2)]}
                     to={createAppRoute('consumptionTable', { CONSUMPTION_TABLE_ID: newConsumptionTableState.id })}
                 />
             </form>

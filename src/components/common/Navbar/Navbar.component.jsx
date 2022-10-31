@@ -24,7 +24,7 @@ const Navbar = ({items}) => {
                     navbarItems.map((navItem, index)=> (
                         <li key={navItem.id} className='list-item'>
                             {
-                                currentTableId === null && navItem.route === 'consumptionTable' ?
+                                currentTableId === 0 && navItem.route === 'consumptionTable' ?
                                 <p><span className="icon">{navItem.icon}</span><span className="text">{navItem.text}</span></p> :
                                 <Link
                                     to={navItem.route === 'consumptionTable' ? createAppRoute(navItem.route, {CONSUMPTION_TABLE_ID: currentTableId}) : createAppRoute(navItem.route)}

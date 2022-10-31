@@ -38,7 +38,7 @@ export const GlobalContextProvider = (props) => {
             
             setActiveIndex(activeIndexFromLocalStorage);
         } else {
-            activeIndex === null && setActiveIndex(0)
+            activeIndex === null && setActiveIndex(1)
         }
 
         return ()=> localStorage.setItem('lastId', 0)

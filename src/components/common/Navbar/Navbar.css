@@ -13,6 +13,17 @@
     margin-top: 100px;
 }
 
+.navigation > button {
+    background-color: transparent;
+    width: 70px;
+    height: 70px;
+}
+
+.navigation > button > svg {
+    width: 35px;
+    height: 35px;
+}
+
 .navigation .navigation-list {
     position: relative;
     display: flex;

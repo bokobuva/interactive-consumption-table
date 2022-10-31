@@ -30,7 +30,7 @@ const ConsumptionTables = () => {
                         <li><h4>Saved tables:</h4></li>
                         {consumptionTablesState.map(table=> (
                             <li key={table.id}>
-                                <Link key={table.id} to={createAppRoute('consumptionTable', {CONSUMPTION_TABLE_ID: table.id})} onClick={()=> [setActiveIndex(2), localStorage.setItem('activeIndex', 2)]}>{table.name}</Link>
+                                <Link key={table.id} to={createAppRoute('consumptionTable', {CONSUMPTION_TABLE_ID: table.id})} onClick={()=> [setActiveIndex(3), localStorage.setItem('activeIndex', 2)]}>{table.name}</Link>
                                 <button onClick={()=> removeConsumptionTable(table.id)}>{icon}</button>
                             </li>
                         ))}

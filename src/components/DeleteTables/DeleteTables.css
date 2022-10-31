@@ -1,0 +1,16 @@
+.delete-tables-container {
+    height: 100vh;
+    padding: 15vh 5vw 15vh 5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.buttons-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttons-container > button {
+    width: 45%;
+}

@@ -28,7 +28,12 @@ const AutocompleteProduct = ({ addProduct, className}) => {
         if (document.activeElement === productNameRef.current ) {
 
             if (e.keyCode === 13) {
-                productNameRef.current.value = filteredSuggestions[activeSuggestion];
+                const chosenProduct = PRODUCTS_SUGGESTIONS.find(product => {
+                    console.log(product.name, filteredSuggestions[activeSuggestion])
+                    return product.name === filteredSuggestions[activeSuggestion]
+                });
+                productNameRef.current.value = chosenProduct.name;
+                productPriceRef.current.value = chosenProduct.price
                 setShowSuggestion(false);
                 setActiveSuggestion(0);
                 handleOptionClick(e);

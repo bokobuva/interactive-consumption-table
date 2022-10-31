@@ -7,6 +7,8 @@ const consumptionTablesReducer = (state, action) => {
             ]
         case 'setConsumptionTables':
             return action.payload
+        case 'reset':
+            return []
         case 'players':
             return [
                 ...state.map((table)=> {

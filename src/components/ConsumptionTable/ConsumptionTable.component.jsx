@@ -36,7 +36,7 @@ const ConsumptionTable = () => {
     }, [consumptionTableId])
     
     useEffect(()=>{
-      currentTable?.id && setCurrentTableId(currentTable.id)
+      currentTable?.id !== 0 && setCurrentTableId(currentTable.id)
     }, [currentTable, setCurrentTableId]);
 
     const handleAddPlayer = useCallback((playerName) => {
