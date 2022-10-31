@@ -68,7 +68,7 @@ export const PRODUCTS_SUGGESTIONS = [
     {
         id: 'fqpr-4',
         name: 'cips',
-        price: 20,
+        price: 15,
     },
     {
         id: 'fqpr-5',
@@ -89,10 +89,5 @@ export const PRODUCTS_SUGGESTIONS = [
         id: 'fqpr-8',
         name: 'pivo',
         price: 50,
-    },
-    {
-        id: 'fqpr-8',
-        name: 'cigare',
-        price: 180,
     },
 ]
