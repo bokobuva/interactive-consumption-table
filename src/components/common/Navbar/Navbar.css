@@ -133,3 +133,9 @@
 .link-item-1 {
     translate: calc(70px * 0) 0;
 }
+
+@media screen and (max-height: 500px){
+    .navigation{
+        display: none;
+    }
+}

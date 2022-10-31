@@ -1,6 +1,5 @@
 import { useRef, useState } from "react";
 import { PLAYERS_SUGGESTIONS } from "../../../consts/suggestions";
-import useMediaQuery from "../../../hooks/useMediaQuery";
 import InputField from "../InputField/InputField.component";
 import './AutocompletePlayer.css';
 
@@ -9,7 +8,6 @@ const AutocompletePlayer = ({ onChange, className}) => {
     const [activeSuggestion, setActiveSuggestion] = useState(0);
     const [showSuggestions, setShowSuggestion] = useState(false);
     const userInputRef = useRef();
-    const isTouchScreen = useMediaQuery('(min-width: 850px)');
     
     const handleAutocompleteChange = () => {
         
@@ -19,7 +17,8 @@ const AutocompletePlayer = ({ onChange, className}) => {
         setFilteredSuggestions(mappedFilteredSuggestions);
     }
 
-    const handleOptionClick = (e) => {
+    const handleOptionClick = () => {
+        userInputRef.current.value = filteredSuggestions[activeSuggestion];
         onChange(userInputRef.current.value);
         userInputRef.current.value = '';
     }
@@ -28,10 +27,9 @@ const AutocompletePlayer = ({ onChange, className}) => {
         if(document.activeElement === userInputRef.current){
 
             if (e.keyCode === 13) {
-                userInputRef.current.value = filteredSuggestions[activeSuggestion];
                 setShowSuggestion(false);
                 setActiveSuggestion(0);
-                handleOptionClick(e);
+                handleOptionClick();
             } else if (e.keyCode === 38) {
                 if (activeSuggestion === 0) return;
                 
@@ -68,7 +66,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
                             className = "suggestion-active";
                         }
                         return (
-                            <li className={className} key={suggestion} onClick={(e)=>isTouchScreen && handleOptionClick(e)} onTouchEnd={(e)=> !isTouchScreen && handleOptionClick(e)}>
+                            <li className={className} key={suggestion} onClick={()=> handleOptionClick()}>
                                 {suggestion}
                             </li>
                         );

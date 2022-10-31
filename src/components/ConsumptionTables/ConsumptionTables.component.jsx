@@ -6,7 +6,7 @@ import './ConsumptionTables.css';
 import { icon } from "../../Static/Icons/x";
 
 const ConsumptionTables = () => {
-    const {consumptionTablesState, consumptionTablesDispatch, setActiveIndex } = useContext(GlobalContext);
+    const {consumptionTablesState, consumptionTablesDispatch, setActiveIndex, currentTableId, setCurrentTableId } = useContext(GlobalContext);
 
 
     const removeConsumptionTable = (tableId) => {
@@ -15,6 +15,9 @@ const ConsumptionTables = () => {
         consumptionTablesState.forEach((table, index) => {
             if (tableId === table.id ) {
                 tableIndex = index
+            }
+            if (tableId === currentTableId) {
+                setCurrentTableId(0)
             }
         });
         modifiedTables.splice(tableIndex, 1);
