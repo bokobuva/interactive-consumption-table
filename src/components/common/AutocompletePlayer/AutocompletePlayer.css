@@ -24,15 +24,15 @@ li {
 }
 
 .autocomplete-input{
-    width: 49%;
+    width: 78%;
 }
 
 .autocomplete-button{
+    width: 20%;
+    height: 75%;
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 49%;
-    height: 65%;
     border-radius: 4px;
     border: 1px solid var(--theme-yellow);
 }

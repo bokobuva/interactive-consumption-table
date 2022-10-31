@@ -1,55 +1,49 @@
 export const PLAYERS_SUGGESTIONS = [
     {
         id: 'fqpl-1',
-        name: 'Brane',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-2',
-        name: 'Siki',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-3',
-        name: 'Dame',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-4',
-        name: 'Muksi',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-5',
-        name: 'Vrabac',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-6',
-        name: 'Areni',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-7',
-        name: 'Boko',
-        productsTaken: [],
-        total: 0,
-    },
-    {
-        id: 'fqpl-8',
         name: 'Birde',
         productsTaken: [],
         total: 0,
     },
     {
-        id: 'fqpl-9',
+        id: 'fqpl-2',
         name: 'Kjanzo',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-3',
+        name: 'Siki',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-4',
+        name: 'Dame',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-5',
+        name: 'Muksi',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-6',
+        name: 'Jovan',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-7',
+        name: 'Englez',
+        productsTaken: [],
+        total: 0,
+    },
+    {
+        id: 'fqpl-8',
+        name: 'Boko',
         productsTaken: [],
         total: 0,
     },
@@ -58,8 +52,8 @@ export const PLAYERS_SUGGESTIONS = [
 export const PRODUCTS_SUGGESTIONS = [
     {
         id: 'fqpr-1',
-        name: 'coca cola',
-        price: 50,
+        name: 'poker',
+        price: 25,
     },
     {
         id: 'fqpr-2',
@@ -68,21 +62,36 @@ export const PRODUCTS_SUGGESTIONS = [
     },
     {
         id: 'fqpr-3',
-        name: 'voda',
-        price: 30,
+        name: 'cola',
+        price: 40,
     },
     {
         id: 'fqpr-4',
         name: 'cips',
-        price: 30,
+        price: 20,
     },
     {
         id: 'fqpr-5',
-        name: 'smoki',
-        price: 30,
+        name: 'bueno',
+        price: 45,
     },
     {
         id: 'fqpr-6',
+        name: 'kroasan',
+        price: 30,
+    },
+    {
+        id: 'fqpr-7',
+        name: 'popkek',
+        price: 20,
+    },
+    {
+        id: 'fqpr-8',
+        name: 'pivo',
+        price: 50,
+    },
+    {
+        id: 'fqpr-8',
         name: 'cigare',
         price: 180,
     },

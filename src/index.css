@@ -2,12 +2,23 @@
   box-sizing: border-box;
 }
 
+.App {
+  min-height: 100vh;
+  height: 100%;
+}
+
 :root {
   --theme-yellow: #F6DB2B;
   --theme-bg-black: #18191A;
   --theme-neutral-gray: #3A3B3C;
   --theme-highlight-gray: #4E4F50;
   --theme-text-gray: #E4E6EB;
+}
+
+main {
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: 80px;
 }
 
 body {

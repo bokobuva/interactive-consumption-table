@@ -3,31 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 
 import reportWebVitals from './reportWebVitals';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ConsumptionTable from './components/ConsumptionTable/ConsumptionTable.component';
-import ChoosePlatform from './components/ChoosePlatform/ChoosePlatform.component';
-import ConsumptionTables from './components/ConsumptionTables/ConsumptionTables.component';
+import { BrowserRouter } from 'react-router-dom';
 import { GlobalContextProvider } from './context/GlobalContext';
+import App from './App';
 
+document.getElementById('root').style.minHeight = '100vh';
+document.getElementById('root').style.height = 'unset';
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <ChoosePlatform/>,
-  },
-  {
-    path: '/ct',
-    element: <ConsumptionTables/>,
-  },
-  {
-    path: '/ct/:consumptionTableId',
-    element: <ConsumptionTable/>,
-  }
-])
 root.render(
   <React.StrictMode>
       <GlobalContextProvider>
-    <RouterProvider router={router}/>
+        <BrowserRouter>
+          <App/>
+        </BrowserRouter>
       </GlobalContextProvider>
   </React.StrictMode>
 );

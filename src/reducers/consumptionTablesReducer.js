@@ -10,7 +10,7 @@ const consumptionTablesReducer = (state, action) => {
         case 'players':
             return [
                 ...state.map((table)=> {
-                    return table.id === action.payload.tableId ? {...table, players: action.payload.players }: {...table}
+                    return table.id === action.payload.tableId ? {...table, players: action.payload.players || [] }: {...table}
                 })
             ]
         case 'products':

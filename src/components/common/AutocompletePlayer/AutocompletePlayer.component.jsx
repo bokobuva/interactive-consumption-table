@@ -23,21 +23,23 @@ const AutocompletePlayer = ({ onChange, className}) => {
     }
     
     const handleKeyDown = (e) => {
-        
-        if (e.keyCode === 13) {
-            userInputRef.current.value = filteredSuggestions[activeSuggestion];
-            setShowSuggestion(false);
-            setActiveSuggestion(0);
-        } else if (e.keyCode === 38) {
-            if (activeSuggestion === 0) return;
-            
-            setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion - 1);
-        }
-        // User pressed the down arrow, increment the index
-        else if (e.keyCode === 40) {
-            if (activeSuggestion - 1 === filteredSuggestions.length) return;
-            
-            setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion + 1);
+        if(document.activeElement === userInputRef.current){
+
+            if (e.keyCode === 13) {
+                userInputRef.current.value = filteredSuggestions[activeSuggestion];
+                setShowSuggestion(false);
+                setActiveSuggestion(0);
+            } else if (e.keyCode === 38) {
+                if (activeSuggestion === 0) return;
+                
+                setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion - 1);
+            }
+            // User pressed the down arrow, increment the index
+            else if (e.keyCode === 40) {
+                if (activeSuggestion - 1 === filteredSuggestions.length) return;
+                
+                setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion + 1);
+            }
         }
     };
     
@@ -71,8 +73,9 @@ const AutocompletePlayer = ({ onChange, className}) => {
                 </ul> : ''
             }
             <button
-                onClick={(e)=> [e.preventDefault(),onChange(userInputRef.current.value), userInputRef.current.value = '']}
+                onClick={(e)=> [e.preventDefault(), onChange(userInputRef.current.value), userInputRef.current.value = '']}
                 className='autocomplete-button'
+                type="button"
             >
                 Add
             </button>

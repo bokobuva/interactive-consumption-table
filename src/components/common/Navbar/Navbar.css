@@ -2,17 +2,22 @@
     width: 100%;
     height: 70px;
     background: var(--theme-text-gray);
-    position: relative;
+    position: absolute;
+    bottom: 0px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    padding-right: 5vw;
     align-items: center;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     margin-top: 100px;
 }
 
 .navigation .navigation-list {
+    position: relative;
     display: flex;
-    width: 88%;
+    padding-left: 0px;
+    justify-content: flex-end;
 }
 
 .navigation .navigation-list .list-item {
@@ -24,7 +29,7 @@
     padding: 0;
 }
 
-.navigation .navigation-list .list-item a {
+.navigation .navigation-list .list-item a,  .navigation .navigation-list .list-item p{
     position: relative;
     display: flex;
     flex-direction: column;
@@ -35,9 +40,10 @@
     text-align: center;
     font-weight: 500;
     background-color: transparent;
+    margin-top: 0px;
 }
 
-.navigation .navigation-list .list-item a .icon {
+.navigation .navigation-list .list-item a .icon,.navigation .navigation-list .list-item p .icon  {
     width: 35px;
     height: 35px;
     position: relative;
@@ -48,21 +54,21 @@
     transition: 0.5s;
 }
 
-.navigation .navigation-list .list-item a .icon svg {
+.navigation .navigation-list .list-item a .icon svg,.navigation .navigation-list .list-item p .icon svg  {
     width: 35px;
     height: 35px;
 }
 
-.navigation .navigation-list .list-item a .icon path {
+.navigation .navigation-list .list-item a .icon path, .navigation .navigation-list .list-item p .icon path  {
     width: 100%;
     height: 100%;
 }
 
-.navigation .navigation-list .list-item.active a .icon {
+.navigation .navigation-list .list-item a.active .icon, .navigation .navigation-list .list-item p.active .icon {
     translate: 0 -32px; 
 }
 
-.navigation .navigation-list .list-item a .text {
+.navigation .navigation-list .list-item a .text, .navigation .navigation-list .list-item p .text {
     position: absolute;
     font-weight: 700;
     font-size: 0.75rem;
@@ -72,13 +78,14 @@
     color: var(--theme-bg-black);
 }
 
-.navigation .navigation-list .list-item.active a .text {
+.navigation .navigation-list .list-item a.active .text, .navigation .navigation-list .list-item p.active .text {
     opacity: 1;
     translate: 0 10px;
 }
 
 .indicator {
     position: absolute;
+    left: 0;
     top: -50%;
     width: 70px;
     height: 70px;
@@ -112,30 +119,6 @@
     box-shadow: 0px -10px 0 0 var(--theme-bg-black);
 }
 
-.navigation .navigation-list .list-item:nth-child(1).active ~ .indicator {
+.link-item-1 {
     translate: calc(70px * 0) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(2).active ~ .indicator {
-    translate: calc(70px * 1) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(3).active ~ .indicator {
-    translate: calc(70px * 2) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(4).active ~ .indicator {
-    translate: calc(70px * 3) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(5).active ~ .indicator {
-    translate: calc(70px * 4) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(6).active ~ .indicator {
-    translate: calc(70px * 5) 0;
-}
-
-.navigation .navigation-list .list-item:nth-child(7).active ~ .indicator {
-    translate: calc(70px * 6) 0;
 }

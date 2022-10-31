@@ -31,7 +31,7 @@ export const handleAddProduct = (ref, productId, productsData, dispatch) => {
   ref.current.value = '';
 };
 
-export const addTakenProduct = (tableId, playersData, playerId, productId, dispatch) => {
+export const addTakenProduct = (tableId, playersData, playerId, productId, productName, productPrice, dispatch) => {
   const modifiedPlayers = {
     tableId,
     players: playersData.map((player) => {
@@ -46,7 +46,7 @@ export const addTakenProduct = (tableId, playersData, playerId, productId, dispa
                 takenProduct.productId === productId ? { ...takenProduct, quantity: takenProduct.quantity + 1 } : { ...takenProduct }
               )
             }) :
-            [...player.productsTaken, { productId, quantity: 1 }]
+            [...player.productsTaken, { productId, productName, productPrice, quantity: 1 }]
         }
       } else {
 
@@ -85,16 +85,20 @@ export const removeTakenProduct = (tableId, playersData, playerId, productId, di
       }
     }),
   }
-  emptyTakenProductIndexes.forEach((emptyProduct) => modifiedPlayers[emptyProduct.playerIndex]?.productsTaken?.splice(emptyProduct.takenProductIndex, 1));
+
+  emptyTakenProductIndexes.forEach((emptyProduct) =>{
+    modifiedPlayers.players[emptyProduct.playerIndex]?.productsTaken?.splice(parseInt(emptyProduct.takenProductIndex), 1);
+  });
+
   dispatch({ type: 'players', payload: modifiedPlayers });
 };
 
-export const handleClickOnTakenProduct = (tableId, playersData, playerId, productId, timeOnClick, timeOnReleaseClick, dispatch) => {
+export const handleClickOnTakenProduct = (tableId, playersData, playerId, productId, productName, productPrice, timeOnClick, timeOnReleaseClick, dispatch) => {
 
-  if (timeOnReleaseClick - timeOnClick > 350) {
+  if (timeOnReleaseClick - timeOnClick >= 300) {
     removeTakenProduct(tableId, playersData, playerId, productId, dispatch);
   } else {
-    addTakenProduct(tableId, playersData, playerId, productId, dispatch);
+    addTakenProduct(tableId, playersData, playerId, productId, productName, productPrice, dispatch);
   }
   dispatch({ type: 'timeOnClick', payload: { tableId, timeOnClick: null } });
 };

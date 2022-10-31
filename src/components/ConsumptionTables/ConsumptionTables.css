@@ -5,39 +5,38 @@
     justify-content: space-between;
     align-items: center;
     gap: 16px;
-    padding: 10vh 15vw;
+    padding: 2vh 5vw 15vh 5vw;
 }
-.tables-and-new-table-container{
-    width: 70vw;
-    height: 55vh;
-    overflow-y: scroll;
+.tables-container{
+    width: 90vw;
 }
 
-.tables-and-new-table-container > div {
-    width: 70vw;
+.tables-container > div {
+    width: 90vw;
     height: max-content;
 }
 
-.tables-and-new-table-container > div > ul {
-    width: 70vw;
+.tables-container > div > ul {
+    width: 90vw;
     padding-left: 0px;
     margin: 4px 0;
 }
 
-.tables-and-new-table-container > div > ul > li {
-    width: 70vw;
+.tables-container > div > ul > li {
+    width: 90vw;
     padding: 6px 0;
     display: flex;
     justify-content: space-between;
 }
 
-.tables-and-new-table-container > div > h5 {
+.tables-container > div > h4 {
     margin: 5px 0;
 }
 
 .delete-button{
     width: 15px;
-    height: 10px;
+    height: 15px;
+    margin-right: 7px;
     display: inline-block;
     position: relative;
 }
@@ -60,7 +59,45 @@
     rotate: -45deg;
 }
 
-.new-table-form{
+.tables {
+    padding: 0;
+    margin-top: 0;
+}
+
+.tables li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+}
+
+.tables li h4 {
+    margin: 0;
+}
+
+.tables li a {
+    width: max-content;
+    background-color: transparent;
+    color: var(--theme-yellow);
+    text-decoration: underline;
+    padding: 0;
+}
+
+.tables li button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tables li button svg {
+    width: 15px;
+    height: 15px;
+}
+
+.tables li button svg path {
     width: 100%;
-    position: relative;
+    height: 100%;
 }

@@ -11,32 +11,38 @@ const AutocompleteProduct = ({ addProduct, className}) => {
     const productPriceRef = useRef();
     
     const handleProductNameChange = () => {
-        const filteredSuggestions = PRODUCTS_SUGGESTIONS.filter((suggestion)=> { console.log(suggestion); return suggestion.name.toLowerCase().indexOf(productNameRef.current.value.toLowerCase()) > -1});
+        const filteredSuggestions = PRODUCTS_SUGGESTIONS.filter((suggestion)=> suggestion.name.toLowerCase().indexOf(productNameRef.current.value.toLowerCase()) > -1);
         const mappedFilteredSuggestions = filteredSuggestions.map((suggestion)=> suggestion.name);
         setShowSuggestion(true);
         setFilteredSuggestions(mappedFilteredSuggestions);
     }
 
     const handleOptionClick = (e) => {
-        productNameRef.current.value = e.currentTarget.innerText;
+        e.preventDefault();
+        addProduct(productNameRef.current.value, productPriceRef.current.value);
+        productNameRef.current.value = '';
+        productPriceRef.current.value = '';
     }
     
     const handleKeyDown = (e) => {
-        
-        if (e.keyCode === 13) {
-            productNameRef.current.value = filteredSuggestions[activeSuggestion];
-            setShowSuggestion(false);
-            setActiveSuggestion(0);
-        } else if (e.keyCode === 38) {
-            if (activeSuggestion === 0) return;
-            
-            setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion - 1);
-        }
-        // User pressed the down arrow, increment the index
-        else if (e.keyCode === 40) {
-            if (activeSuggestion - 1 === filteredSuggestions.length) return;
-            
-            setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion + 1);
+        if (document.activeElement === productNameRef.current ) {
+
+            if (e.keyCode === 13) {
+                productNameRef.current.value = filteredSuggestions[activeSuggestion];
+                setShowSuggestion(false);
+                setActiveSuggestion(0);
+                handleOptionClick(e);
+            } else if (e.keyCode === 38) {
+                if (activeSuggestion === 0) return;
+                
+                setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion - 1);
+            }
+            // User pressed the down arrow, increment the index
+            else if (e.keyCode === 40) {
+                if (activeSuggestion - 1 === filteredSuggestions.length) return;
+                
+                setActiveSuggestion(prevActiveSuggestion=> prevActiveSuggestion + 1);
+            }
         }
     };
     
@@ -85,6 +91,7 @@ const AutocompleteProduct = ({ addProduct, className}) => {
                     productPriceRef.current.value = ''
                 ]}
                 className='autocomplete-button'
+                type="button"
             >
                 Add
             </button>

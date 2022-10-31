@@ -1,7 +1,36 @@
 th,
 td {
-  min-width: 35px;
-  height: 35px;
+  min-width: 43px;
+  height: 43px;
   background-color: gray;
   border: 1px solid black;
+  line-height: 16px;
+}
+
+.addPlayerModal, .addProductModal {
+  width: 90vw;
+  padding: 5vh 5vw 5vh 5vw;
+  background-color: var(--theme-neutral-gray);
+  border: none;
+  border-radius: 15px;
+}
+.addPlayerModal h4, .addProductModal h4{
+  margin-top: 0px;
+}
+
+.addPlayerModal .autocomplete-container .autocomplete-input label,
+.addPlayerModal .autocomplete-container .autocomplete-input input,
+.addProductModal .autocomplete-product-container .autocomplete-input label,
+.addProductModal .autocomplete-product-container .autocomplete-input input
+{
+  background-color: var(--theme-neutral-gray);
+}
+
+.addPlayerModal > button, .addProductModal > button {
+  margin-top: 25px;
+}
+
+th >button, td > button {
+  width: 100%;
+  height: 100%;
 }

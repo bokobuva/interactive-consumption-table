@@ -1,0 +1,16 @@
+.playerTotalModal {
+    background-color: var(--theme-neutral-gray);
+    padding: 5vh 10vw 5vh 10vw;
+}
+
+.playerTotalModal h4{
+    text-align: center;
+} 
+
+.playerTotalModal h5{
+    text-align: right;
+}
+
+.playerTotalModal ul {
+    padding: 0;
+}

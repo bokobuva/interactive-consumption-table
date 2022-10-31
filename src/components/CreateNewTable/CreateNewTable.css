@@ -1,0 +1,74 @@
+.new-table-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 2vh 5vw 15vh 5vw;
+}
+
+.new-table-container section, .new-table-container form {
+    width: 90vw;
+}
+
+.new-table-container section .players-and-products-container {
+    height: 55vh;
+    overflow-y: scroll;
+}
+
+.new-table-container section .players-and-products-container h3, .new-table-container section .players-and-products-container h4 {
+    margin: 5px 0;
+}
+
+.new-table-container section .players-and-products-container ul {
+    padding: 0px;
+    margin: 5px 0;
+}
+
+.new-table-container section .players-and-products-container ul li {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 0;
+}
+
+
+.delete-button{
+    width: 15px;
+    height: 15px;
+    margin-right: 7px;
+    display: inline-block;
+    position: relative;
+}
+
+.delete-button > span {
+    width: 15px;
+    height: 1px;
+    background-color: var(--theme-text-gray);
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 50%;
+}
+
+.delete-button > span:nth-child(1) {
+    rotate: 45deg;
+}
+
+.delete-button > span:nth-child(2) {
+    rotate: -45deg;
+}
+
+.new-table-form{
+    width: 100%;
+    max-height: 28vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.new-table-form > a {
+    margin-top: 10px;
+}

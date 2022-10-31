@@ -2,7 +2,26 @@
     display: flex;
 }
 
-.autocomplete-product-container > div, .autocomplete-product-container > button {
-    width: 32%;
+.autocomplete-product-container > div{
+    width: 38%;
 }
 
+.autocomplete-product-container > button {
+    width: 20%;
+}
+
+.autocomplete-product-container > div:nth-child(2) {
+    margin-left: 7px;
+}
+
+.suggestions{
+    padding: 0;
+}
+
+.suggestions li {
+    padding: 8px;
+}
+
+.suggestion-active {
+    background-color: var(--theme-neutral-gray);
+}
