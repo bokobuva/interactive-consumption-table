@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { PLAYERS_SUGGESTIONS } from "../../../consts/suggestions";
+import useMediaQuery from "../../../hooks/useMediaQuery";
 import InputField from "../InputField/InputField.component";
 import './AutocompletePlayer.css';
 
@@ -8,6 +9,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
     const [activeSuggestion, setActiveSuggestion] = useState(0);
     const [showSuggestions, setShowSuggestion] = useState(false);
     const userInputRef = useRef();
+    const isTouchScreen = useMediaQuery('(min-width: 850px)');
     
     const handleAutocompleteChange = () => {
         
@@ -66,7 +68,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
                             className = "suggestion-active";
                         }
                         return (
-                            <li className={className} key={suggestion} onClick={(e)=> handleOptionClick(e)}>
+                            <li className={className} key={suggestion} onClick={(e)=>isTouchScreen && handleOptionClick(e)} onTouchEnd={(e)=> !isTouchScreen && handleOptionClick(e)}>
                                 {suggestion}
                             </li>
                         );
