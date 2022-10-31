@@ -60,7 +60,7 @@ const AutocompleteProduct = ({ addProduct, className}) => {
                 onKeyDown={handleKeyDown}
                 onChange={handleProductNameChange}
                 className='autocomplete-input'
-                type='text'
+                type='search'
             />
             {
                 showSuggestions && productNameRef.current.value !== '' && filteredSuggestions.length ?

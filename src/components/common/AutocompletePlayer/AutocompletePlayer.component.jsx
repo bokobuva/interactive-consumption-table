@@ -47,7 +47,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
     return (
         <div className={`${className ? className : ''} autocomplete-container`}>
             <InputField
-                type='text'
+                type='search'
                 placeholder='Add player'
                 label='Add player'
                 ref={userInputRef}
