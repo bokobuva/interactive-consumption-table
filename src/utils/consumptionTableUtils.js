@@ -63,32 +63,43 @@ export const removeTakenProduct = (tableId, playersData, playerId, productId, di
   let emptyTakenProductIndexes = [];
   const modifiedPlayers = {
     tableId,
-    players: playersData.map((player, playerIndex) => {
+    players: playersData.map((player) => {
       if (player.id === playerId) {
 
         return {
           ...player,
-          productsTaken: player.productsTaken.map((takenProduct, takenProductIndex) => {
-            if (takenProduct.quantity === 1) {
-              emptyTakenProductIndexes.push({ playerIndex, takenProductIndex });
-            }
+          productsTaken: player.productsTaken.map((takenProduct) => {
             return (
               takenProduct.productId === productId ? { ...takenProduct, quantity: takenProduct.quantity - 1 } : { ...takenProduct }
             )
           })
         }
       } else {
-
+        
         return {
           ...player,
         }
       }
     }),
   }
+  
+  modifiedPlayers.players.forEach((player, playerIndex)=>{
+    if (player.id === playerId) {
+      player.productsTaken.forEach((product, takenProductIndex)=>{
+        if(product.quantity === 0){
+          emptyTakenProductIndexes.push({playerIndex: playerIndex, takenProductIndex: takenProductIndex});
+        }
+      })
+    }
+  })
+
+  console.log(emptyTakenProductIndexes)
 
   emptyTakenProductIndexes.forEach((emptyProduct) =>{
     modifiedPlayers.players[emptyProduct.playerIndex]?.productsTaken?.splice(parseInt(emptyProduct.takenProductIndex), 1);
   });
+
+  emptyTakenProductIndexes = [];
 
   dispatch({ type: 'players', payload: modifiedPlayers });
 };

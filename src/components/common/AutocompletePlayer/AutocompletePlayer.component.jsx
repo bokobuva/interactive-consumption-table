@@ -18,7 +18,7 @@ const AutocompletePlayer = ({ onChange, className}) => {
     }
 
     const handleOptionClick = () => {
-        userInputRef.current.value = filteredSuggestions[activeSuggestion];
+        userInputRef.current.value = filteredSuggestions[activeSuggestion] || userInputRef.current.value;
         onChange(userInputRef.current.value);
         userInputRef.current.value = '';
     }

@@ -59,6 +59,12 @@ const ConsumptionTable = () => {
       consumptionTablesDispatch({type: 'setConsumptionTables',payload: modifiedTables});
     }, [consumptionTablesDispatch, consumptionTablesState, currentTable]);
 
+    const resetTakenProducts = () => {
+      const modifiedPlayers = {tableId: currentTable.id, players: currentTable.players.map((player)=> ({...player, productsTaken: []}))}
+
+      consumptionTablesDispatch({type: 'players', payload: modifiedPlayers});
+    }
+
     useEffect(()=> {
       typeof playerTotal !== typeof undefined && playerTotalRef.current.showModal();
     }, [playerTotal])
@@ -70,7 +76,7 @@ const ConsumptionTable = () => {
           <thead>
             <tr>
   
-              <th></th>
+              <th><Button text='R' onClick={()=> resetTakenProducts()}/></th>
               {currentTable?.products?.length > 0 && currentTable.products.map((product) => (
                 <th key={product.id}>{product.name.split('').map((letter, index)=> <Fragment key={`${index}-${letter}`}>{letter}<br/></Fragment>)}</th>
               ))}
